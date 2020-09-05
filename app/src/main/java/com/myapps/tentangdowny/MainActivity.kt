@@ -9,25 +9,37 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import com.myapps.tentangdowny.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        findViewById<Button>(R.id.done_button).setOnClickListener {
+        //setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+//        findViewById<Button>(R.id.done_button).setOnClickListener {
+//            addNickname(it)
+        binding.doneButton.setOnClickListener{
             addNickname(it)
+
 
         }
     }
 
     private fun addNickname(view: View) {
-        val editText: EditText = findViewById(R.id.nickname_edit)
-        val nicknameView: TextView = findViewById(R.id.nickname_text)
+        binding.apply {
+            nicknameText.text = binding.nicknameEdit.text
+            invalidateAll()
+            nicknameEdit.visibility = View.GONE
+            doneButton.visibility = View.GONE
+            nicknameText.visibility = View.VISIBLE
+        }
 
-        nicknameView.text = editText.text // Ini memasukan Inputan dari Edit Text Ke NicknameView
-        editText.visibility = View.GONE // Ini Menghilangkan editText
-        view.visibility = View.GONE // Ini Menghilangkan Button
-        nicknameView.visibility = View.VISIBLE // Ini Menampilkan Isi Text Yang Telah di Inputkan
+//        nicknameView.text = editText.text // Ini memasukan Inputan dari Edit Text Ke NicknameView
+//        editText.visibility = View.GONE // Ini Menghilangkan editText
+//        view.visibility = View.GONE // Ini Menghilangkan Button
+//        nicknameView.visibility = View.VISIBLE // Ini Menampilkan Isi Text Yang Telah di Inputkan
 
 
         // Hide the keyboards
