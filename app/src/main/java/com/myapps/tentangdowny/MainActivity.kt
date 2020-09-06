@@ -14,10 +14,16 @@ import com.myapps.tentangdowny.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+    private val myName: MyName = MyName("Downy Uwu_Uwu")
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding.myName = myName
 //        findViewById<Button>(R.id.done_button).setOnClickListener {
 //            addNickname(it)
         binding.doneButton.setOnClickListener{
